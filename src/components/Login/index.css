@@ -8,31 +8,45 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: hidden;
 }
 @media (min-width: 768px) {
   .login-route {
-    background-image: url('https://res.cloudinary.com/dndtpnlzv/image/upload/v1678352031/Tasty%20Kitchen/Rectangle_1456login-md-image_va4yyl.png');
-    background-position: right;
-    background-size: 40vw 100vh;
-    padding: 0;
+    background-image: none;
     display: flex;
     flex-direction: row;
+    padding: 0;
   }
 }
-@media (min-width: 1200px) {
-  .login-route {
-    background-size: 45vw 100vh;
+.website-landing-img-container-md {
+  display: none;
+}
+@media (min-width: 768px) {
+  .website-landing-img-container-md {
+    display: block;
+    width: 50vw;
+    height: 100vh;
   }
+}
+.website-bg-img-md {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 @media (min-width: 768px) {
   .form-card-container {
-    width: 60vw;
+    width: 50vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+}
+@media (min-width: 1400px) {
+  .form-card-container {
+    padding-left: 100px;
   }
 }
 

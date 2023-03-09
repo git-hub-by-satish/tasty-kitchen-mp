@@ -53,7 +53,7 @@ class Login extends Component {
               alt="website logo"
               src="https://res.cloudinary.com/dndtpnlzv/image/upload/v1678354949/Tasty%20Kitchen/website-login-logo-md_oapwsa.png"
             />
-            <p className="website-name-login">Tasty Kitchen</p>
+            <h1 className="website-name-login">Tasty Kitchens</h1>
             <h1 className="login-form-heading">Login</h1>
             <div className="input-boxes">
               <label className="login-input-label" htmlFor="username">
@@ -82,6 +82,13 @@ class Login extends Component {
               Login
             </button>
           </form>
+        </div>
+        <div className="website-landing-img-container-md">
+          <img
+            className="website-bg-img-md"
+            alt="website login"
+            src="https://res.cloudinary.com/dndtpnlzv/image/upload/v1678352031/Tasty%20Kitchen/Rectangle_1456login-md-image_va4yyl.png"
+          />
         </div>
       </div>
     )
