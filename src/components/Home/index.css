@@ -127,8 +127,5 @@ li.slick-active button::before {
   background-position: 100%;
 }
 .sort-by-option {
-  padding-right: 20px;
-  background-image: url('https://res.cloudinary.com/dndtpnlzv/image/upload/v1678471696/Tasty%20Kitchen/select-arrow_obio4e.png');
-  background-repeat: no-repeat;
-  background-position: 100%;
+  /* border, box-shadow, padding are not working for the options*/
 }
