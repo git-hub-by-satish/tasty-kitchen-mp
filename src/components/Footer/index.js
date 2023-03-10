@@ -21,27 +21,23 @@ export default function Footer() {
       </p>
       <div className="social-icons-container">
         <FaPinterestSquare
-          className="social-icon-md"
+          className="social-icon"
           testid="pintrest-social-icon"
-          size={25}
           color="#ffffff"
         />
         <SiInstagram
-          className="social-icon-md"
+          className="social-icon"
           testid="instagram-social-icon"
-          size={25}
           color="#ffffff"
         />
         <BsTwitter
-          className="social-icon-md"
+          className="social-icon"
           testid="twitter-social-icon"
-          size={25}
           color="#ffffff"
         />
         <FaFacebookSquare
-          className="social-icon-md"
+          className="social-icon"
           testid="facebook-social-icon"
-          size={26}
           color="#ffffff"
         />
       </div>

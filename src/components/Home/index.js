@@ -91,26 +91,27 @@ class Home extends Component {
   render() {
     const {restaurantsOffersApiStatus} = this.state
     return (
-      <>
+      <div className="home-route">
         <NavBar />
         {restaurantsOffersApiStatus === apiStatusConstants.success ? (
           this.renderOffersSlider()
         ) : (
-          <div className="offers-loader-container">
-            <Loader
-              type="TailSpin"
-              color="#F7931E"
-              height="40"
-              width="40"
-              testid="restaurants-offers-loader"
-              strokeWidth={1}
-              strokeWidthSecondary={25}
-            />
-          </div>
+          <Loader
+            className="offers-loader-container"
+            type="TailSpin"
+            color="#F7931E;
+"
+          />
         )}
-
+        <div className="popular-restaurants-section">
+          <h1 className="popular-restaurants-heading">Popular Restaurants</h1>
+          <p className="popular-restaurants-description">
+            Select Your favorite restaurant special dish and make your day
+            happy...
+          </p>
+        </div>
         <Footer />
-      </>
+      </div>
     )
   }
 }
