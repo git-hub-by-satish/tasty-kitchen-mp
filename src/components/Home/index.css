@@ -1,9 +1,9 @@
 .home-route {
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
-  min-height: 100vh;
 }
 .home-carousal-section {
   width: 100%;
@@ -83,7 +83,7 @@ li.slick-active button::before {
   flex-direction: column;
 }
 .popular-restaurants-heading {
-  margin-top: 0;
+  margin: 0;
   color: #183b56;
   font-family: 'DM Sans';
   font-weight: 700;
@@ -96,7 +96,5 @@ li.slick-active button::before {
   font-size: 12px;
   color: #64748b;
   text-align: start;
-}
-.nav {
-  justify-self: flex-end;
+  line-height: 24px;
 }

@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie'
+import {BsFilterLeft} from 'react-icons/bs'
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 import Slider from 'react-slick'
@@ -9,6 +10,19 @@ import Footer from '../Footer'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import './index.css'
+
+const sortByOptions = [
+  {
+    id: 0,
+    displayText: 'Highest',
+    value: 'Highest',
+  },
+  {
+    id: 2,
+    displayText: 'Lowest',
+    value: 'Lowest',
+  },
+]
 
 const apiStatusConstants = {
   inProgress: 'IN PROGRESS',
@@ -93,22 +107,37 @@ class Home extends Component {
     return (
       <div className="home-route">
         <NavBar />
-        {restaurantsOffersApiStatus === apiStatusConstants.success ? (
-          this.renderOffersSlider()
-        ) : (
+        {restaurantsOffersApiStatus === apiStatusConstants.inProgress ? (
           <Loader
             className="offers-loader-container"
             type="TailSpin"
-            color="#F7931E;
-"
+            color="#F7931E"
           />
+        ) : (
+          this.renderOffersSlider()
         )}
         <div className="popular-restaurants-section">
-          <h1 className="popular-restaurants-heading">Popular Restaurants</h1>
-          <p className="popular-restaurants-description">
-            Select Your favorite restaurant special dish and make your day
-            happy...
-          </p>
+          <div className="popular-restaurants-header">
+            <div>
+              <h1 className="popular-restaurants-heading">
+                Popular Restaurants
+              </h1>
+              <p className="popular-restaurants-description">
+                Select Your favorite restaurant special dish and make your day
+                happy...
+              </p>
+            </div>
+            <div>
+              <BsFilterLeft />
+              <select>
+                {sortByOptions.map(eachOption => (
+                  <option key={eachOption.id} value={eachOption.value}>
+                    Sort by {eachOption.displayText}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
         </div>
         <Footer />
       </div>
