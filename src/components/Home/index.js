@@ -127,12 +127,19 @@ class Home extends Component {
                 happy...
               </p>
             </div>
-            <div>
+            <div className="sort-by-container">
               <BsFilterLeft />
-              <select>
-                {sortByOptions.map(eachOption => (
-                  <option key={eachOption.id} value={eachOption.value}>
-                    Sort by {eachOption.displayText}
+              <label htmlFor="select" className="sort-by-label">
+                Sort by&nbsp;
+              </label>
+              <select id="select" className="sort-by">
+                {sortByOptions.reverse().map(eachOption => (
+                  <option
+                    className="sort-by-option"
+                    key={eachOption.id}
+                    value={eachOption.value}
+                  >
+                    {eachOption.displayText}
                   </option>
                 ))}
               </select>

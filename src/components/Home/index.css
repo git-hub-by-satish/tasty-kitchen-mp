@@ -98,3 +98,37 @@ li.slick-active button::before {
   text-align: start;
   line-height: 24px;
 }
+.sort-by-container {
+  display: flex;
+  align-items: flex-end;
+}
+.sort-by-label {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #475569;
+  margin-left: 10px;
+  font-family: 'DM Sans';
+}
+.sort-by {
+  font-family: 'DM Sans';
+  appearance: none;
+  outline: none;
+  border: none;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #475569;
+  padding-top: 0;
+  padding-right: 20px;
+  background-size: 10px;
+  background-image: url('https://res.cloudinary.com/dndtpnlzv/image/upload/v1678471696/Tasty%20Kitchen/select-arrow_obio4e.png');
+  background-repeat: no-repeat;
+  background-position: 100%;
+}
+.sort-by-option {
+  padding-right: 20px;
+  background-image: url('https://res.cloudinary.com/dndtpnlzv/image/upload/v1678471696/Tasty%20Kitchen/select-arrow_obio4e.png');
+  background-repeat: no-repeat;
+  background-position: 100%;
+}
