@@ -150,3 +150,7 @@
 }
 .restaurant-rating-cost-container {
 }
+.food-items-list {
+  list-style-type: none;
+  padding: 32px 24px;
+}

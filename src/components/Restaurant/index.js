@@ -5,6 +5,7 @@ import {FaRupeeSign} from 'react-icons/fa'
 import Loader from 'react-loader-spinner'
 import NavBar from '../NavBar'
 import Footer from '../Footer'
+import FoodItem from '../FoodItem'
 
 import './index.css'
 
@@ -106,6 +107,11 @@ class Restaurant extends Component {
             </div>
           </div>
         </div>
+        <ul className="food-items-list">
+          {foodItemsList.map(eachFoodItem => (
+            <FoodItem key={eachFoodItem.id} foodItemDetails={eachFoodItem} />
+          ))}
+        </ul>
       </div>
     )
   }
