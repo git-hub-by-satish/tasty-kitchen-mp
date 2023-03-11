@@ -27,7 +27,7 @@ class NavBar extends Component {
           <h1 className="nav-website-name">Tasty Kitchens</h1>
         </div>
         <ul className="nav-menu-list">
-          <Link style={{textDecoration: 'none'}} className to="/">
+          <Link style={{textDecoration: 'none'}} to="/">
             <li className="nav-menu-list-item">Home</li>
           </Link>
           <Link style={{textDecoration: 'none'}} to="/cart">

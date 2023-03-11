@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie'
-import {BsFilterLeft} from 'react-icons/bs'
+import {TfiAngleLeft, TfiAngleRight} from 'react-icons/tf'
+import {BsFilterLeft, BsFillStarFill} from 'react-icons/bs'
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 import Slider from 'react-slick'
@@ -18,7 +19,7 @@ const sortByOptions = [
     value: 'Highest',
   },
   {
-    id: 2,
+    id: 1,
     displayText: 'Lowest',
     value: 'Lowest',
   },
@@ -30,15 +31,21 @@ const apiStatusConstants = {
   failure: 'FAILURE',
 }
 
+const LIMIT = 9
+
 class Home extends Component {
   state = {
     restaurantsOffersList: [],
     restaurantsOffersApiStatus: apiStatusConstants.inProgress,
     restaurantsList: [],
+    restaurantsListApiStatus: apiStatusConstants.inProgress,
+    selectedSortByValue: sortByOptions[1].value,
+    activePage: 1,
   }
 
   componentDidMount() {
     this.getRestaurantsOffers()
+    this.getRestaurantsList()
   }
 
   getRestaurantsOffers = async () => {
@@ -66,6 +73,45 @@ class Home extends Component {
         restaurantsOffersApiStatus: apiStatusConstants.failure,
       })
     }
+  }
+
+  getModifiedList = restaurants =>
+    restaurants.map(eachRestaurant => ({
+      id: eachRestaurant.id,
+      name: eachRestaurant.name,
+      cuisine: eachRestaurant.cuisine,
+      userRating: eachRestaurant.user_rating,
+      constForTwo: eachRestaurant.cost_for_two,
+      groupByTime: eachRestaurant.group_by_time,
+      hasOnlineDelivery: eachRestaurant.has_online_delivery,
+      hasTableBooking: eachRestaurant.has_table_booking,
+      imageUrl: eachRestaurant.image_url,
+      isDeliveringNow: eachRestaurant.is_delivering_now,
+      location: eachRestaurant.location,
+      menuType: eachRestaurant.menu_type,
+      opensAt: eachRestaurant.opens_at,
+    }))
+
+  getRestaurantsList = async () => {
+    this.setState({restaurantsListApiStatus: apiStatusConstants.inProgress})
+    const {activePage} = this.state
+    const offset = (activePage - 1) * LIMIT
+    const jwtToken = Cookies.get('jwt_token')
+    const url = `https://apis.ccbp.in/restaurants-list?offset=${offset}&limit=${LIMIT}`
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    }
+    const response = await fetch(url, options)
+    const data = await response.json()
+    const {restaurants} = data
+    const updatedRestaurantsList = this.getModifiedList(restaurants)
+    this.setState({
+      restaurantsList: updatedRestaurantsList,
+      restaurantsListApiStatus: apiStatusConstants.success,
+    })
   }
 
   renderOffersSlider = () => {
@@ -102,8 +148,60 @@ class Home extends Component {
     )
   }
 
+  onSelectSortBy = event => {
+    console.log(event.target.value)
+    this.setState({selectedSortByValue: event.target.value})
+  }
+
+  renderPopularRestaurantsList = () => {
+    const {restaurantsList} = this.state
+    return (
+      <ul className="restaurants-list">
+        {restaurantsList.map(eachRestaurant => (
+          <li
+            key={eachRestaurant.id}
+            className="restaurants-list-item"
+            testid="restaurant-item"
+          >
+            <div>
+              <img
+                className="popular-restaurant-image"
+                src={eachRestaurant.imageUrl}
+                alt="restaurant"
+              />
+            </div>
+            <div className="popular-restaurant-details">
+              <div>
+                <h1 className="popular-restaurant-name">
+                  {eachRestaurant.name}
+                </h1>
+                <p className="popular-restaurant-cuisine">
+                  {eachRestaurant.cuisine}
+                </p>
+              </div>
+              <div className="ratings-and-reviews">
+                <BsFillStarFill size={15} color="gold" />
+                <p className="popular-restaurant-rating">
+                  {eachRestaurant.userRating.rating}
+                </p>
+                <p className="popular-restaurant-review">
+                  ({eachRestaurant.userRating.total_reviews})
+                </p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
   render() {
-    const {restaurantsOffersApiStatus} = this.state
+    const {
+      restaurantsOffersApiStatus,
+      restaurantsListApiStatus,
+      selectedSortByValue,
+      activePage,
+    } = this.state
     return (
       <div className="home-route">
         <NavBar />
@@ -132,7 +230,12 @@ class Home extends Component {
               <label htmlFor="select" className="sort-by-label">
                 Sort by&nbsp;
               </label>
-              <select id="select" className="sort-by">
+              <select
+                onChange={this.onSelectSortBy}
+                value={selectedSortByValue}
+                id="select"
+                className="sort-by"
+              >
                 {sortByOptions.reverse().map(eachOption => (
                   <option
                     className="sort-by-option"
@@ -144,6 +247,32 @@ class Home extends Component {
                 ))}
               </select>
             </div>
+          </div>
+          {restaurantsListApiStatus === apiStatusConstants.success ? (
+            this.renderPopularRestaurantsList()
+          ) : (
+            <Loader
+              className="offers-loader-container"
+              type="TailSpin"
+              color="#F7931E"
+            />
+          )}
+          <div className="pagination-buttons-bar">
+            <button
+              type="button"
+              testid="pagination-left-button"
+              className="pagination-btn"
+            >
+              <TfiAngleLeft size={15} />
+            </button>
+            {activePage} of 20
+            <button
+              type="button"
+              testid="pagination-right-button"
+              className="pagination-btn"
+            >
+              <TfiAngleRight size={15} />
+            </button>
           </div>
         </div>
         <Footer />
