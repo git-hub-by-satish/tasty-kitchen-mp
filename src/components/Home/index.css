@@ -140,6 +140,7 @@ li.slick-active button::before {
 }
 .restaurants-list-item {
   display: flex;
+  align-items: center;
   margin-bottom: 14px;
 }
 .popular-restaurant-image {
@@ -152,15 +153,16 @@ li.slick-active button::before {
 .popular-restaurant-details {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: flex-start;
-  max-height: 100px;
+  height: 100px;
+  padding-top: 5px;
 }
 .popular-restaurant-name {
   font-family: 'DM Sans';
   font-weight: 700;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 16px;
   letter-spacing: 0.2px;
   color: #334155;
   margin: 0;
@@ -206,5 +208,16 @@ li.slick-active button::before {
   color: #334155;
   height: 24px;
   width: 24px;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+.page-no {
+  font-family: 'Bree Serif';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
   text-align: center;
+  color: #334155;
+  margin-left: 16px;
+  margin-right: 16px;
 }

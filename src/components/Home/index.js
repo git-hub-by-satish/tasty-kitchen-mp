@@ -1,7 +1,10 @@
 import Cookies from 'js-cookie'
-import {TfiAngleLeft, TfiAngleRight} from 'react-icons/tf'
-import {BsFilterLeft, BsFillStarFill} from 'react-icons/bs'
 import {Component} from 'react'
+
+import {Link} from 'react-router-dom'
+
+import {IoIosArrowBack, IoIosArrowForward} from 'react-icons/io'
+import {BsFilterLeft, BsFillStarFill} from 'react-icons/bs'
 import Loader from 'react-loader-spinner'
 import Slider from 'react-slick'
 
@@ -93,6 +96,7 @@ class Home extends Component {
     }))
 
   getRestaurantsList = async () => {
+    console.log('this should more')
     this.setState({restaurantsListApiStatus: apiStatusConstants.inProgress})
     const {activePage} = this.state
     const offset = (activePage - 1) * LIMIT
@@ -158,41 +162,51 @@ class Home extends Component {
     return (
       <ul className="restaurants-list">
         {restaurantsList.map(eachRestaurant => (
-          <li
+          <Link
             key={eachRestaurant.id}
-            className="restaurants-list-item"
-            testid="restaurant-item"
+            style={{textDecoration: 'none'}}
+            to={`/restaurant/${eachRestaurant.id}`}
           >
-            <div>
-              <img
-                className="popular-restaurant-image"
-                src={eachRestaurant.imageUrl}
-                alt="restaurant"
-              />
-            </div>
-            <div className="popular-restaurant-details">
+            <li className="restaurants-list-item" testid="restaurant-item">
               <div>
-                <h1 className="popular-restaurant-name">
-                  {eachRestaurant.name}
-                </h1>
-                <p className="popular-restaurant-cuisine">
-                  {eachRestaurant.cuisine}
-                </p>
+                <img
+                  className="popular-restaurant-image"
+                  src={eachRestaurant.imageUrl}
+                  alt="restaurant"
+                />
               </div>
-              <div className="ratings-and-reviews">
-                <BsFillStarFill size={15} color="gold" />
-                <p className="popular-restaurant-rating">
-                  {eachRestaurant.userRating.rating}
-                </p>
-                <p className="popular-restaurant-review">
-                  ({eachRestaurant.userRating.total_reviews})
-                </p>
+              <div className="popular-restaurant-details">
+                <div>
+                  <h1 className="popular-restaurant-name">
+                    {eachRestaurant.name}
+                  </h1>
+                  <p className="popular-restaurant-cuisine">
+                    {eachRestaurant.cuisine}
+                  </p>
+                </div>
+                <div className="ratings-and-reviews">
+                  <BsFillStarFill size={15} color="gold" />
+                  <p className="popular-restaurant-rating">
+                    {eachRestaurant.userRating.rating}
+                  </p>
+                  <p className="popular-restaurant-review">
+                    ({eachRestaurant.userRating.total_reviews})
+                  </p>
+                </div>
               </div>
-            </div>
-          </li>
+            </li>
+          </Link>
         ))}
       </ul>
     )
+  }
+
+  goToPreviousPage = event => {
+    console.log('prev page')
+  }
+
+  goToNextPage = event => {
+    console.log('nxt page')
   }
 
   render() {
@@ -259,19 +273,21 @@ class Home extends Component {
           )}
           <div className="pagination-buttons-bar">
             <button
+              onClick={this.goToPreviousPage}
               type="button"
               testid="pagination-left-button"
               className="pagination-btn"
             >
-              <TfiAngleLeft size={15} />
+              <IoIosArrowBack size={15} />
             </button>
-            {activePage} of 20
+            <p className="page-no">{activePage} of 20</p>
             <button
+              onClick={this.goToNextPage}
               type="button"
               testid="pagination-right-button"
               className="pagination-btn"
             >
-              <TfiAngleRight size={15} />
+              <IoIosArrowForward size={15} />
             </button>
           </div>
         </div>
