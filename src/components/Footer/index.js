@@ -1,6 +1,9 @@
-import {BsTwitter} from 'react-icons/bs'
-import {FaPinterestSquare, FaFacebookSquare} from 'react-icons/fa'
-import {SiInstagram} from 'react-icons/si'
+import {
+  FaPinterestSquare,
+  FaFacebookSquare,
+  FaInstagram,
+  FaTwitter,
+} from 'react-icons/fa'
 import './index.css'
 
 export default function Footer() {
@@ -15,9 +18,7 @@ export default function Footer() {
         <h1 className="footer-website-name">Tasty Kitchens</h1>
       </div>
       <p className="footer-about-description">
-        The only thing we are serious about is food.
-        <br />
-        Contact us on
+        The only thing we are serious about is food. Contact us on
       </p>
       <div className="social-icons-container">
         <FaPinterestSquare
@@ -25,12 +26,12 @@ export default function Footer() {
           testid="pintrest-social-icon"
           color="#ffffff"
         />
-        <SiInstagram
+        <FaInstagram
           className="social-icon"
           testid="instagram-social-icon"
           color="#ffffff"
         />
-        <BsTwitter
+        <FaTwitter
           className="social-icon"
           testid="twitter-social-icon"
           color="#ffffff"

@@ -167,7 +167,7 @@ class Home extends Component {
             style={{textDecoration: 'none'}}
             to={`/restaurant/${eachRestaurant.id}`}
           >
-            <li className="restaurants-list-item" testid="restaurant-item">
+            <li className="restaurants-list-item">
               <div>
                 <img
                   className="popular-restaurant-image"
@@ -201,12 +201,22 @@ class Home extends Component {
     )
   }
 
-  goToPreviousPage = event => {
-    console.log('prev page')
+  goToNextPage = () => {
+    const {activePage} = this.state
+    console.log(activePage)
+    if (activePage < 20) {
+      this.setState({activePage: activePage + 1})
+      this.getRestaurantsList()
+    }
   }
 
-  goToNextPage = event => {
-    console.log('nxt page')
+  goToPreviousPage = () => {
+    const {activePage} = this.state
+    console.log(activePage)
+    if (activePage > 1) {
+      this.setState({activePage: activePage - 1})
+      this.getRestaurantsList()
+    }
   }
 
   render() {
@@ -275,7 +285,6 @@ class Home extends Component {
             <button
               onClick={this.goToPreviousPage}
               type="button"
-              testid="pagination-left-button"
               className="pagination-btn"
             >
               <IoIosArrowBack size={15} />
@@ -284,7 +293,6 @@ class Home extends Component {
             <button
               onClick={this.goToNextPage}
               type="button"
-              testid="pagination-right-button"
               className="pagination-btn"
             >
               <IoIosArrowForward size={15} />

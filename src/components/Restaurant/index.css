@@ -1,0 +1,152 @@
+.restaurant-details-route {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.restaurant-details-body {
+  width: 100%;
+}
+.restaurant-details-loader-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  height: 70vh;
+  width: 100%;
+  margin-bottom: 30vh;
+}
+.restaurant-image {
+  width: 150px;
+  height: 150px;
+}
+.restaurant-details-banner-bg-container {
+  width: 100%; /* This is necessary to make the background image occupy the required height */
+  height: 188px;
+}
+.restaurant-details-banner {
+  background-image: url('https://res.cloudinary.com/dndtpnlzv/image/upload/v1678547086/Tasty%20Kitchen/banner-sm_jyueuc.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  max-width: 1440px;
+  overflow: hidden;
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+}
+.img-container {
+  background-clip: border-box;
+  width: 220px;
+  height: 100%;
+  margin: 0;
+}
+.restaurant-image {
+  height: 220px;
+  width: 220px;
+  display: block;
+  border-radius: 50%;
+  position: relative;
+  top: -50px;
+  left: -70px;
+}
+.restaurant-details-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: -55px;
+  height: 188px;
+}
+.restaurant-name {
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  color: #ffffff;
+  margin-top: 32px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.restaurant-cuisine {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #ffffff;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+.restaurant-location {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #ffffff;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+.restaurant-rating-cost-container {
+  display: flex;
+  margin-top: 16px;
+}
+.ratings-container {
+  display: flex;
+  flex-direction: column;
+  margin-right: 16px;
+}
+.star-rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.restaurant-rating {
+  font-family: 'DM Sans';
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  margin: 0;
+  margin-left: 4px;
+}
+.cost-container {
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid #ffffff;
+  padding-left: 16px;
+}
+.rupee-cost {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.cost-for-two {
+  font-family: 'DM Sans';
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  margin: 0;
+}
+.reviews-count {
+  font-family: 'DM Sans';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #e2e8f0;
+  margin: 0;
+}
+.cost-for-two-label {
+  font-family: 'DM Sans';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #e2e8f0;
+  margin: 0;
+}
+.restaurant-rating-cost-container {
+}

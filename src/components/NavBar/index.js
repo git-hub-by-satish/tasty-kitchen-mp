@@ -1,4 +1,5 @@
-import {Link} from 'react-router-dom'
+import Cookies from 'js-cookie'
+import {withRouter, Link} from 'react-router-dom'
 import {Component} from 'react'
 import {FiMenu} from 'react-icons/fi'
 import {IoIosCloseCircle} from 'react-icons/io'
@@ -34,7 +35,11 @@ class NavBar extends Component {
             <li className="nav-menu-list-item">Cart</li>
           </Link>
           <li>
-            <button type="button" className="logout-btn">
+            <button
+              onClick={this.onClickLogout}
+              type="button"
+              className="logout-btn"
+            >
               Logout
             </button>
           </li>
@@ -42,6 +47,13 @@ class NavBar extends Component {
       </div>
     </div>
   )
+
+  onClickLogout = () => {
+    Cookies.remove('jwt_token')
+    const {history} = this.props
+    console.log(this.props)
+    history.replace('/login')
+  }
 
   render() {
     const {showNavMenu} = this.state
@@ -68,14 +80,18 @@ class NavBar extends Component {
           {showNavMenu && (
             <div className="nav-bar-menu-sm">
               <ul className="nav-menu-list">
-                <Link style={{textDecoration: 'none'}} className to="/">
+                <Link style={{textDecoration: 'none'}} to="/">
                   <li className="nav-menu-list-item">Home</li>
                 </Link>
                 <Link style={{textDecoration: 'none'}} to="/cart">
                   <li className="nav-menu-list-item">Cart</li>
                 </Link>
                 <li>
-                  <button type="button" className="logout-btn">
+                  <button
+                    onClick={this.onClickLogout}
+                    type="button"
+                    className="logout-btn"
+                  >
                     Logout
                   </button>
                 </li>
@@ -96,4 +112,4 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar
+export default withRouter(NavBar)
