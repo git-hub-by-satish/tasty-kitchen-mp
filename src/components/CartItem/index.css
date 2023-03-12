@@ -1,0 +1,41 @@
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.cart-item-img-container {
+  height: 90px;
+  width: 136px;
+}
+.cart-item-img {
+  height: 90px;
+  width: 136px;
+  border-radius: 8px;
+}
+.cart-item-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 16px;
+}
+.cart-item-name {
+  font-family: 'DM Sans';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 14px;
+  letter-spacing: 0.2px;
+  color: #183b56;
+}
+.cart-item-total-container {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+.cart-item-total {
+  font-family: 'DM Sans';
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffa412;
+  margin: 0;
+}

@@ -109,7 +109,7 @@ class Restaurant extends Component {
         </div>
         <ul className="food-items-list">
           {foodItemsList.map(eachFoodItem => (
-            <FoodItem key={eachFoodItem.id} foodItemDetails={eachFoodItem} />
+            <FoodItem key={eachFoodItem.id} eachFoodItem={eachFoodItem} />
           ))}
         </ul>
       </div>
