@@ -12,7 +12,7 @@ class CartItem extends Component {
   }
 
   addItem = () => {
-    const {foodItemDetails} = this.props
+    const {foodItemDetails, getCartList} = this.props
     const cartItem = {
       id: foodItemDetails.id,
       name: foodItemDetails.name,
@@ -28,12 +28,13 @@ class CartItem extends Component {
     } else {
       localStorage.setItem('cart_list', JSON.stringify([cartItem]))
     }
+    getCartList()
 
     this.setState({quantity: 1})
   }
 
   onIncrement = () => {
-    const {foodItemDetails} = this.props
+    const {foodItemDetails, getCartList} = this.props
     const {id} = foodItemDetails
     const {quantity} = this.state
     console.log(quantity)
@@ -46,11 +47,13 @@ class CartItem extends Component {
     })
     console.log(updatedList)
     localStorage.setItem('cart_list', JSON.stringify(updatedList))
+    getCartList()
+
     this.setState({quantity: quantity + 1})
   }
 
   onDecrement = () => {
-    const {foodItemDetails} = this.props
+    const {foodItemDetails, getCartList} = this.props
     const {id} = foodItemDetails
     const {quantity} = this.state
     const cartList = JSON.parse(localStorage.getItem('cart_list'))
@@ -67,6 +70,8 @@ class CartItem extends Component {
       })
       localStorage.setItem('cart_list', JSON.stringify(updatedList))
     }
+    getCartList()
+
     this.setState({quantity: quantity - 1})
   }
 
