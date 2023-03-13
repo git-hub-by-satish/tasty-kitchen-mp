@@ -76,6 +76,11 @@ class Restaurant extends Component {
               src={restaurantDetails.imageUrl}
               alt="restaurant"
             />
+            <img
+              className="restaurant-image-md"
+              src={restaurantDetails.imageUrl}
+              alt="restaurant"
+            />
             <div className="restaurant-details-section">
               <h1 className="restaurant-name">{restaurantDetails.name}</h1>
               <p className="restaurant-cuisine">{restaurantDetails.cuisine}</p>

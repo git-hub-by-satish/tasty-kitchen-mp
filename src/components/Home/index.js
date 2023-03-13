@@ -98,10 +98,10 @@ class Home extends Component {
   getRestaurantsList = async () => {
     console.log('this should more')
     this.setState({restaurantsListApiStatus: apiStatusConstants.inProgress})
-    const {activePage} = this.state
+    const {activePage, selectedSortByValue} = this.state
     const offset = (activePage - 1) * LIMIT
     const jwtToken = Cookies.get('jwt_token')
-    const url = `https://apis.ccbp.in/restaurants-list?offset=${offset}&limit=${LIMIT}`
+    const url = `https://apis.ccbp.in/restaurants-list?offset=${offset}&limit=${LIMIT}&sort_by_rating=${selectedSortByValue}`
     const options = {
       method: 'GET',
       headers: {
@@ -155,6 +155,7 @@ class Home extends Component {
   onSelectSortBy = event => {
     console.log(event.target.value)
     this.setState({selectedSortByValue: event.target.value})
+    this.getRestaurantsList()
   }
 
   renderPopularRestaurantsList = () => {

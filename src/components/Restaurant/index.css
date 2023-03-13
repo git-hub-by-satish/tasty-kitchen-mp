@@ -16,30 +16,33 @@
   width: 100%;
   margin-bottom: 30vh;
 }
-.restaurant-image {
-  width: 150px;
-  height: 150px;
-}
 .restaurant-details-banner-bg-container {
-  width: 100%; /* This is necessary to make the background image occupy the required height */
   height: 188px;
 }
 .restaurant-details-banner {
   background-image: url('https://res.cloudinary.com/dndtpnlzv/image/upload/v1678547086/Tasty%20Kitchen/banner-sm_jyueuc.png');
   background-repeat: no-repeat;
   background-size: cover;
-  width: 100%;
-  max-width: 1440px;
+  height: 188px;
   overflow: hidden;
   margin: 0;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
 }
-.img-container {
-  background-clip: border-box;
-  width: 220px;
-  height: 100%;
-  margin: 0;
+@media (min-width: 768px) {
+  .restaurant-details-banner-bg-container {
+    height: 344px;
+  }
+  .restaurant-details-banner {
+    background-image: url('https://res.cloudinary.com/dndtpnlzv/image/upload/v1678646300/Tasty%20Kitchen/template_primary_oxz5wb.jpg');
+    background-size: cover;
+    height: 344px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 19px;
+  }
 }
 .restaurant-image {
   height: 220px;
@@ -50,6 +53,20 @@
   top: -50px;
   left: -70px;
 }
+.restaurant-image-md {
+  display: none;
+}
+@media (min-width: 768px) {
+  .restaurant-image {
+    display: none;
+  }
+  .restaurant-image-md {
+    display: block;
+    width: 360px;
+    height: 230px;
+  }
+}
+
 .restaurant-details-section {
   display: flex;
   flex-direction: column;
