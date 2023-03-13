@@ -14,7 +14,7 @@ class FoodItem extends Component {
   getCartItemQuantity = () => {
     const {eachFoodItem} = this.props
     const {id} = eachFoodItem
-    const cartList = JSON.parse(localStorage.getItem('cart_list'))
+    const cartList = JSON.parse(localStorage.getItem('cartData'))
     if (cartList !== null) {
       const cartItem = cartList.filter(eachItem => eachItem.id === id) // We will  get a list containing one object //
       if (cartItem.length !== 0) {
@@ -32,13 +32,13 @@ class FoodItem extends Component {
       cost: eachFoodItem.cost,
       quantity: 1,
     }
-    const cartList = JSON.parse(localStorage.getItem('cart_list'))
+    const cartList = JSON.parse(localStorage.getItem('cartData'))
     if (cartList !== null) {
       cartList.push(cartItem)
       const updatedCartList = JSON.stringify(cartList)
-      localStorage.setItem('cart_list', updatedCartList)
+      localStorage.setItem('cartData', updatedCartList)
     } else {
-      localStorage.setItem('cart_list', JSON.stringify([cartItem]))
+      localStorage.setItem('cartData', JSON.stringify([cartItem]))
     }
 
     this.setState({quantity: 1})
@@ -49,7 +49,7 @@ class FoodItem extends Component {
     const {id} = eachFoodItem
     const {quantity} = this.state
     console.log(quantity)
-    const cartList = JSON.parse(localStorage.getItem('cart_list'))
+    const cartList = JSON.parse(localStorage.getItem('cartData'))
     const updatedList = cartList.map(eachItem => {
       if (eachItem.id === id) {
         return {...eachItem, quantity: quantity + 1}
@@ -57,7 +57,7 @@ class FoodItem extends Component {
       return eachItem
     })
     console.log(updatedList)
-    localStorage.setItem('cart_list', JSON.stringify(updatedList))
+    localStorage.setItem('cartData', JSON.stringify(updatedList))
     this.setState({quantity: quantity + 1})
   }
 
@@ -65,11 +65,11 @@ class FoodItem extends Component {
     const {eachFoodItem} = this.props
     const {id} = eachFoodItem
     const {quantity} = this.state
-    const cartList = JSON.parse(localStorage.getItem('cart_list'))
+    const cartList = JSON.parse(localStorage.getItem('cartData'))
     const updatedQuantity = quantity - 1
     if (updatedQuantity === 0) {
       const updatedList = cartList.filter(eachItem => eachItem.id !== id)
-      localStorage.setItem('cart_list', JSON.stringify(updatedList))
+      localStorage.setItem('cartData', JSON.stringify(updatedList))
     } else {
       const updatedList = cartList.map(eachItem => {
         if (eachItem.id === id) {
@@ -77,7 +77,7 @@ class FoodItem extends Component {
         }
         return eachItem
       })
-      localStorage.setItem('cart_list', JSON.stringify(updatedList))
+      localStorage.setItem('cartData', JSON.stringify(updatedList))
     }
     this.setState({quantity: quantity - 1})
   }
@@ -85,8 +85,13 @@ class FoodItem extends Component {
   render() {
     const {quantity} = this.state
     const {eachFoodItem} = this.props
+    const testIdValues = {
+      dec: 'decrement-count',
+      inc: 'increment-count',
+      current: 'active-count',
+    }
     return (
-      <li className="food-item-card">
+      <li testid="foodItem" className="food-item-card">
         <div>
           <img
             className="food-item-img"
@@ -111,6 +116,7 @@ class FoodItem extends Component {
             onDecrement={this.onDecrement}
             addItem={this.addItem}
             quantity={quantity}
+            testIdValues={testIdValues}
           />
         </div>
       </li>

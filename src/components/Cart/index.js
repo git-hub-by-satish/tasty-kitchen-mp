@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import {Component} from 'react'
 import {FaRupeeSign} from 'react-icons/fa'
 
@@ -14,11 +15,11 @@ class Cart extends Component {
 
   onPlaceOrder = () => {
     this.setState({orderPlaced: true})
-    localStorage.setItem('cart_list', JSON.stringify([]))
+    localStorage.setItem('cartData', JSON.stringify([]))
   }
 
   getCartList = () => {
-    const cartList = JSON.parse(localStorage.getItem('cart_list'))
+    const cartList = JSON.parse(localStorage.getItem('cartData'))
     if (cartList !== null) {
       if (cartList.length !== 0) {
         const itemTotalsList = cartList.map(
@@ -46,17 +47,17 @@ class Cart extends Component {
       />
       <h1 className="payment-success-text">Payment Successful</h1>
       <p className="payment-success-description">
-        Thank you for ordering
-        <br />
-        Your payment is successfully completed.
+        Thank you for ordering Your payment is successfully completed.
       </p>
-      <button
-        onClick={this.onClickGoToHomePage}
-        className="go-to-home-btn"
-        type="button"
-      >
-        Go To Home Page
-      </button>
+      <Link style={{textDecoration: 'none'}} to="/">
+        <button
+          onClick={this.onClickGoToHomePage}
+          className="go-to-home-btn"
+          type="button"
+        >
+          Go To Home Page
+        </button>
+      </Link>
     </div>
   )
 
@@ -68,6 +69,11 @@ class Cart extends Component {
     ) : (
       <div className="cart-items-body">
         <ul className="cart-items-list">
+          <div className="cart-list-header">
+            <p className="item-header">Item</p>
+            <p className="quantity-header">Quantity</p>
+            <p className="price-header">Price</p>
+          </div>
           {cartList.map(eachItem => (
             <CartItem
               key={eachItem.id}
@@ -80,10 +86,12 @@ class Cart extends Component {
         <hr className="cart-items-line" />
         <div className="cart-order-total-bar">
           <h1 className="order-total-label">Order Total:</h1>
-          <div>
+          <div className="cart-bill-box">
             <div className="bill-amount-container">
               <FaRupeeSign size={14} color="#3E4C59" />
-              <p className="order-total-amount">{orderTotal}</p>
+              <p testid="total-price" className="order-total-amount">
+                {orderTotal}
+              </p>
             </div>
             <button
               onClick={this.onPlaceOrder}
@@ -110,17 +118,15 @@ class Cart extends Component {
               alt="empty cart"
               className="empty-cart-img"
             />
-            <h1 className="no-orders-text">No Orders Yet!</h1>
+            <h1 className="no-orders-text">No Order Yet!</h1>
             <p className="empty-cart-view-description">
               Your cart is empty. Add something from the menu.
             </p>
-            <button
-              onClick={this.onClickGoToHomePage}
-              type="button"
-              className="order-now-btn"
-            >
-              Order Now
-            </button>
+            <Link to="/">
+              <button type="button" className="order-now-btn">
+                Order now
+              </button>
+            </Link>
           </div>
         ) : (
           this.renderCartItemsView()

@@ -9,6 +9,7 @@
   color: #ffa412;
   margin-bottom: 2px;
   background-color: transparent;
+  cursor: pointer;
 }
 .items-counter {
   display: flex;
@@ -29,6 +30,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  cursor: pointer;
 }
 .item-quantity {
   color: #475569;

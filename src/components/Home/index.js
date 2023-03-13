@@ -18,13 +18,13 @@ import './index.css'
 const sortByOptions = [
   {
     id: 0,
-    displayText: 'Highest',
-    value: 'Highest',
+    displayText: 'Lowest',
+    value: 'Lowest',
   },
   {
     id: 1,
-    displayText: 'Lowest',
-    value: 'Lowest',
+    displayText: 'Highest',
+    value: 'Highest',
   },
 ]
 
@@ -42,7 +42,7 @@ class Home extends Component {
     restaurantsOffersApiStatus: apiStatusConstants.inProgress,
     restaurantsList: [],
     restaurantsListApiStatus: apiStatusConstants.inProgress,
-    selectedSortByValue: sortByOptions[1].value,
+    selectedSortByValue: sortByOptions[0].value,
     activePage: 1,
   }
 
@@ -152,9 +152,9 @@ class Home extends Component {
     )
   }
 
-  onSelectSortBy = event => {
+  onSelectSortBy = async event => {
     console.log(event.target.value)
-    this.setState({selectedSortByValue: event.target.value})
+    await this.setState({selectedSortByValue: event.target.value})
     this.getRestaurantsList()
   }
 
@@ -168,7 +168,7 @@ class Home extends Component {
             style={{textDecoration: 'none'}}
             to={`/restaurant/${eachRestaurant.id}`}
           >
-            <li className="restaurants-list-item">
+            <li testid="restaurant-item" className="restaurants-list-item">
               <div>
                 <img
                   className="popular-restaurant-image"
@@ -202,22 +202,18 @@ class Home extends Component {
     )
   }
 
-  goToNextPage = () => {
+  goToNextPage = async () => {
     const {activePage} = this.state
     console.log(activePage)
-    if (activePage < 20) {
-      this.setState({activePage: activePage + 1})
-      this.getRestaurantsList()
-    }
+    await this.setState({activePage: activePage + 1})
+    this.getRestaurantsList()
   }
 
-  goToPreviousPage = () => {
+  goToPreviousPage = async () => {
     const {activePage} = this.state
     console.log(activePage)
-    if (activePage > 1) {
-      this.setState({activePage: activePage - 1})
-      this.getRestaurantsList()
-    }
+    await this.setState({activePage: activePage - 1})
+    this.getRestaurantsList()
   }
 
   render() {
@@ -229,13 +225,15 @@ class Home extends Component {
     } = this.state
     return (
       <div className="home-route">
-        <NavBar />
+        <NavBar isHomeRoute />
         {restaurantsOffersApiStatus === apiStatusConstants.inProgress ? (
-          <Loader
-            className="offers-loader-container"
-            type="TailSpin"
-            color="#F7931E"
-          />
+          <div testid="restaurants-offers-loader">
+            <Loader
+              className="offers-loader-container"
+              type="TailSpin"
+              color="#F7931E"
+            />
+          </div>
         ) : (
           this.renderOffersSlider()
         )}
@@ -246,22 +244,24 @@ class Home extends Component {
                 Popular Restaurants
               </h1>
               <p className="popular-restaurants-description">
-                Select Your favorite restaurant special dish and make your day
+                Select Your favourite restaurant special dish and make your day
                 happy...
               </p>
             </div>
             <div className="sort-by-container">
               <BsFilterLeft />
-              <label htmlFor="select" className="sort-by-label">
-                Sort by&nbsp;
-              </label>
+              <p htmlFor="select" className="sort-by-label">
+                Sort by
+              </p>
+              <p>&nbsp;</p>
               <select
                 onChange={this.onSelectSortBy}
                 value={selectedSortByValue}
                 id="select"
                 className="sort-by"
+                name="sort-by"
               >
-                {sortByOptions.reverse().map(eachOption => (
+                {sortByOptions.map(eachOption => (
                   <option
                     className="sort-by-option"
                     key={eachOption.id}
@@ -276,25 +276,31 @@ class Home extends Component {
           {restaurantsListApiStatus === apiStatusConstants.success ? (
             this.renderPopularRestaurantsList()
           ) : (
-            <Loader
-              className="offers-loader-container"
-              type="TailSpin"
-              color="#F7931E"
-            />
+            <div testid="restaurants-list-loader">
+              <Loader
+                className="offers-loader-container"
+                type="TailSpin"
+                color="#F7931E"
+              />
+            </div>
           )}
           <div className="pagination-buttons-bar">
             <button
               onClick={this.goToPreviousPage}
               type="button"
               className="pagination-btn"
+              testid="pagination-left-button"
             >
               <IoIosArrowBack size={15} />
             </button>
-            <p className="page-no">{activePage} of 20</p>
+            <p className="page-no" testid="active-page-number">
+              {activePage}
+            </p>
             <button
               onClick={this.goToNextPage}
               type="button"
               className="pagination-btn"
+              testid="pagination-right-button"
             >
               <IoIosArrowForward size={15} />
             </button>

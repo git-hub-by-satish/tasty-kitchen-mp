@@ -20,13 +20,13 @@ class CartItem extends Component {
       cost: foodItemDetails.cost,
       quantity: 1,
     }
-    const cartList = JSON.parse(localStorage.getItem('cart_list'))
+    const cartList = JSON.parse(localStorage.getItem('cartData'))
     if (cartList !== null) {
       cartList.push(cartItem)
       const updatedCartList = JSON.stringify(cartList)
-      localStorage.setItem('cart_list', updatedCartList)
+      localStorage.setItem('cartData', updatedCartList)
     } else {
-      localStorage.setItem('cart_list', JSON.stringify([cartItem]))
+      localStorage.setItem('cartData', JSON.stringify([cartItem]))
     }
     getCartList()
 
@@ -38,7 +38,7 @@ class CartItem extends Component {
     const {id} = foodItemDetails
     const {quantity} = this.state
     console.log(quantity)
-    const cartList = JSON.parse(localStorage.getItem('cart_list'))
+    const cartList = JSON.parse(localStorage.getItem('cartData'))
     const updatedList = cartList.map(eachItem => {
       if (eachItem.id === id) {
         return {...eachItem, quantity: quantity + 1}
@@ -46,7 +46,7 @@ class CartItem extends Component {
       return eachItem
     })
     console.log(updatedList)
-    localStorage.setItem('cart_list', JSON.stringify(updatedList))
+    localStorage.setItem('cartData', JSON.stringify(updatedList))
     getCartList()
 
     this.setState({quantity: quantity + 1})
@@ -56,11 +56,11 @@ class CartItem extends Component {
     const {foodItemDetails, getCartList} = this.props
     const {id} = foodItemDetails
     const {quantity} = this.state
-    const cartList = JSON.parse(localStorage.getItem('cart_list'))
+    const cartList = JSON.parse(localStorage.getItem('cartData'))
     const updatedQuantity = quantity - 1
     if (updatedQuantity === 0) {
       const updatedList = cartList.filter(eachItem => eachItem.id !== id)
-      localStorage.setItem('cart_list', JSON.stringify(updatedList))
+      localStorage.setItem('cartData', JSON.stringify(updatedList))
     } else {
       const updatedList = cartList.map(eachItem => {
         if (eachItem.id === id) {
@@ -68,7 +68,7 @@ class CartItem extends Component {
         }
         return eachItem
       })
-      localStorage.setItem('cart_list', JSON.stringify(updatedList))
+      localStorage.setItem('cartData', JSON.stringify(updatedList))
     }
     getCartList()
 
@@ -79,8 +79,13 @@ class CartItem extends Component {
     const {foodItemDetails} = this.props
     const {quantity} = this.state
     const itemTotal = foodItemDetails.cost * quantity
+    const testIdValues = {
+      dec: 'decrement-quantity',
+      inc: 'increment-quantity',
+      current: 'item-quantity',
+    }
     return (
-      <div className="cart-item">
+      <div testid="cartItem" className="cart-item">
         <div className="cart-item-img-container">
           <img
             className="cart-item-img"
@@ -95,6 +100,7 @@ class CartItem extends Component {
             onIncrement={this.onIncrement}
             onDecrement={this.onDecrement}
             quantity={quantity}
+            testIdValues={testIdValues}
           />
           <div className="cart-item-total-container">
             <FaRupeeSign color="#ffa412" size={13} />

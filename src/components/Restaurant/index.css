@@ -18,30 +18,36 @@
 }
 .restaurant-details-banner-bg-container {
   height: 188px;
-}
-.restaurant-details-banner {
   background-image: url('https://res.cloudinary.com/dndtpnlzv/image/upload/v1678547086/Tasty%20Kitchen/banner-sm_jyueuc.png');
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.restaurant-details-banner {
   height: 188px;
   overflow: hidden;
   margin: 0;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  width: 100%;
+  max-width: 1168px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .restaurant-details-banner-bg-container {
     height: 344px;
-  }
-  .restaurant-details-banner {
     background-image: url('https://res.cloudinary.com/dndtpnlzv/image/upload/v1678646300/Tasty%20Kitchen/template_primary_oxz5wb.jpg');
     background-size: cover;
+  }
+  .restaurant-details-banner {
     height: 344px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding-top: 19px;
+    padding-left: 48px;
+    padding-right: 48px;
   }
 }
 .restaurant-image {
@@ -53,19 +59,15 @@
   top: -50px;
   left: -70px;
 }
-.restaurant-image-md {
-  display: none;
-}
 @media (min-width: 768px) {
   .restaurant-image {
-    display: none;
-  }
-  .restaurant-image-md {
-    display: block;
-    width: 360px;
-    height: 230px;
+    height: 250px;
+    width: 250px;
+    margin-right: 30px;
   }
 }
+
+/* here */
 
 .restaurant-details-section {
   display: flex;
@@ -73,6 +75,11 @@
   justify-content: center;
   margin-left: -55px;
   height: 188px;
+}
+@media (min-width: 992px) {
+  .restaurant-details-section {
+    margin-left: 30px;
+  }
 }
 .restaurant-name {
   font-family: 'Roboto';
@@ -167,7 +174,30 @@
 }
 .restaurant-rating-cost-container {
 }
+
 .food-items-list {
   list-style-type: none;
   padding: 32px 24px;
+  max-width: 1168px;
+}
+@media (min-width: 768px) {
+  .food-items-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 32px 48px;
+  }
+}
+
+@media (min-width: 992px) {
+  .food-items-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .restaurant-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

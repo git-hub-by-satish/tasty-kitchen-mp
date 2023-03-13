@@ -109,6 +109,7 @@
   font-size: 16px;
   line-height: 26px;
   margin-right: 24px;
+  color: #334155;
 }
 
 @media (min-width: 768px) {
@@ -136,4 +137,10 @@
   background-color: transparent;
   margin-top: 25px;
   border: none;
+}
+.home-style {
+  color: #f7931e;
+}
+.cart-style {
+  color: #f7931e;
 }

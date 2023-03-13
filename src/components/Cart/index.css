@@ -2,6 +2,12 @@
   padding: 32px 24px 0px 24px;
   margin: 0;
 }
+@media (min-width: 992px) {
+  .cart-items-list {
+    padding-right: 32px;
+    padding-bottom: 32px;
+  }
+}
 .cart-items-line {
   border: 1px dashed #cbd2d9;
   margin: 0 24px 24px 24px;
@@ -33,6 +39,21 @@
   text-align: right;
   color: #3e4c59;
   margin: 0;
+}
+@media (min-width: 992px) {
+  .order-total-amount {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 32px;
+    text-align: right;
+  }
+  .cart-bill-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
 }
 .place-order-btn {
   display: flex;
@@ -153,4 +174,50 @@
   line-height: 16px;
   color: #ffffff;
   cursor: pointer;
+}
+.cart-list-header {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .cart-route {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cart-items-body {
+    background-color: #f9fbfe;
+    width: 100%;
+    padding: 32px 48px 48px 48px;
+    margin: 48px;
+    max-width: 1110px;
+  }
+  .cart-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.2px;
+    color: #475569;
+  }
+  .item-header {
+    padding-left: 48px;
+  }
+  .quantity-header {
+    padding-left: 160px;
+  }
+  .place-order-btn {
+    padding: 8px 16px;
+    width: 99px;
+    height: 32px;
+    background: #f7931e;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+  }
 }

@@ -55,9 +55,6 @@ class Restaurant extends Component {
       rating: data.rating,
       reviewsCount: data.reviews_count,
     }
-
-    console.log(updatedData)
-
     this.setState({
       restaurantDetails: updatedData,
       foodItemsList: updatedData.foodItems,
@@ -76,11 +73,7 @@ class Restaurant extends Component {
               src={restaurantDetails.imageUrl}
               alt="restaurant"
             />
-            <img
-              className="restaurant-image-md"
-              src={restaurantDetails.imageUrl}
-              alt="restaurant"
-            />
+
             <div className="restaurant-details-section">
               <h1 className="restaurant-name">{restaurantDetails.name}</h1>
               <p className="restaurant-cuisine">{restaurantDetails.cuisine}</p>
@@ -112,11 +105,13 @@ class Restaurant extends Component {
             </div>
           </div>
         </div>
-        <ul className="food-items-list">
-          {foodItemsList.map(eachFoodItem => (
-            <FoodItem key={eachFoodItem.id} eachFoodItem={eachFoodItem} />
-          ))}
-        </ul>
+        <div className="restaurant-list-container">
+          <ul className="food-items-list">
+            {foodItemsList.map(eachFoodItem => (
+              <FoodItem key={eachFoodItem.id} eachFoodItem={eachFoodItem} />
+            ))}
+          </ul>
+        </div>
       </div>
     )
   }
@@ -129,7 +124,10 @@ class Restaurant extends Component {
         {restaurantDetailsApiStatus === apiStatusConstants.success ? (
           this.renderRestaurantDetailsBody()
         ) : (
-          <div className="restaurant-details-loader-container">
+          <div
+            testid="restaurant-details-loader"
+            className="restaurant-details-loader-container"
+          >
             <Loader
               className="restaurant-details-loader"
               type="TailSpin"
