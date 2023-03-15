@@ -71,6 +71,12 @@ li.slick-active button::before {
     height: 320px;
   }
 }
+.popular-loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
 
 /* Popular Restaurants section */
 .popular-restaurants-section {
@@ -97,6 +103,7 @@ li.slick-active button::before {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    flex-wrap: wrap;
     margin-bottom: 12px;
     padding-bottom: 24px;
     border-bottom: 1px solid #cbd2d9;
@@ -109,6 +116,7 @@ li.slick-active button::before {
   font-weight: 700;
   font-size: 24px;
   text-align: start;
+  padding-right: 0;
 }
 .popular-restaurants-description {
   font-family: 'DM Sans';
@@ -117,6 +125,7 @@ li.slick-active button::before {
   color: #64748b;
   text-align: start;
   line-height: 24px;
+  padding-right: 0;
 }
 
 @media (min-width: 768px) {
@@ -124,6 +133,43 @@ li.slick-active button::before {
     margin-bottom: 0;
   }
 }
+.search-bar {
+  width: 80%;
+  max-width: 200px;
+  border: solid;
+  border-color: #334155;
+  border-radius: 4px;
+  border-width: 1px;
+  display: flex;
+  align-items: center;
+  padding: 5px 2px;
+  cursor: pointer;
+}
+.search-input {
+  font-size: 14px;
+  outline: none;
+  border: none;
+  width: 100%;
+  border-left: 1px solid #334155;
+  margin-left: 5px;
+  padding-left: 4px;
+}
+
+@media (min-width: 768px) {
+  .search-bar {
+    max-width: 280px;
+  }
+  .search-input {
+    font-size: 14px;
+    outline: none;
+    border: none;
+    width: 100%;
+    border-left: 1px solid #334155;
+    margin-left: 5px;
+    padding-left: 4px;
+  }
+}
+
 .sort-by-container {
   display: flex;
   align-items: flex-end;
@@ -135,6 +181,7 @@ li.slick-active button::before {
   color: #475569;
   margin-left: 10px;
   font-family: 'DM Sans';
+  margin-bottom: 0;
 }
 .sort-by {
   font-family: 'DM Sans';
@@ -151,6 +198,9 @@ li.slick-active button::before {
   background-image: url('https://res.cloudinary.com/dndtpnlzv/image/upload/v1678471696/Tasty%20Kitchen/select-arrow_obio4e.png');
   background-repeat: no-repeat;
   background-position: 100%;
+}
+.space {
+  margin: 0;
 }
 .sort-by-option {
   /* border, box-shadow, padding are not working for the options*/
@@ -169,6 +219,11 @@ li.slick-active button::before {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+  }
+}
+@media (min-width: 1200px) {
+  .restaurants-list {
+    justify-content: flex-start;
   }
 }
 .restaurants-list-item {
@@ -190,16 +245,29 @@ li.slick-active button::before {
 @media (min-width: 992px) {
   .restaurants-list-item {
     width: 320px;
-    margin-right: 15px;
+    margin-right: 8px;
+    border-radius: 8px;
+    padding-right: 5px;
   }
+}
+@media (min-width: 1200px) {
+  .restaurants-list-item {
+    margin-right: 35px;
+  }
+}
+
+.popular-restaurant-image-container {
+  display: flex;
+  align-items: center;
 }
 .popular-restaurant-image {
   height: 100px;
   width: 160px;
-  border-radius: 8px;
   margin-right: 16px;
   object-fit: fill;
+  border-radius: 8px;
 }
+
 .popular-restaurant-details {
   display: flex;
   flex-direction: column;
@@ -270,4 +338,26 @@ li.slick-active button::before {
   color: #334155;
   margin-left: 16px;
   margin-right: 16px;
+}
+
+.no-results-view {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 100%;
+  height: 500px;
+}
+.no-results-heading {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 48px;
+  text-align: center;
+  color: #1e293b;
+}
+.no-results-description {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  text-align: center;
+  color: #475569;
 }

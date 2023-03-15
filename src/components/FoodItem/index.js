@@ -91,7 +91,7 @@ class FoodItem extends Component {
       current: 'active-count',
     }
     return (
-      <li testid="foodItem" className="food-item-card">
+      <li className="food-item-card">
         <div>
           <img
             className="food-item-img"

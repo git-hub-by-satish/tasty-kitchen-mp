@@ -21,29 +21,10 @@ export default function Footer() {
         The only thing we are serious about is food. Contact us on
       </p>
       <div className="social-icons-container">
-        <FaPinterestSquare
-          testid="pintrest-social-icon"
-          color="#ffffff"
-          testid="pintrest-social-icon"
-        />
-        <FaInstagram
-          className="social-icon"
-          testid="instagram-social-icon"
-          color="#ffffff"
-          testid="instagram-social-icon"
-        />
-        <FaTwitter
-          className="social-icon"
-          testid="twitter-social-icon"
-          color="#ffffff"
-          testid="twitter-social-icon"
-        />
-        <FaFacebookSquare
-          className="social-icon"
-          testid="facebook-social-icon"
-          color="#ffffff"
-          testid="facebook-social-icon"
-        />
+        <FaPinterestSquare color="#ffffff" />
+        <FaInstagram className="social-icon" color="#ffffff" />
+        <FaTwitter className="social-icon" color="#ffffff" />
+        <FaFacebookSquare className="social-icon" color="#ffffff" />
       </div>
     </div>
   )

@@ -58,6 +58,7 @@
   position: relative;
   top: -50px;
   left: -70px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 @media (min-width: 768px) {
   .restaurant-image {
@@ -66,8 +67,17 @@
     margin-right: 30px;
   }
 }
-
-/* here */
+@media (min-width: 992px) {
+  .restaurant-image {
+    height: 280px;
+    width: 445px;
+    margin-right: 30px;
+    border-radius: 0%;
+    position: static;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+}
 
 .restaurant-details-section {
   display: flex;
@@ -81,6 +91,7 @@
     margin-left: 30px;
   }
 }
+
 .restaurant-name {
   font-family: 'Roboto';
   font-weight: 500;
@@ -91,6 +102,34 @@
   margin-top: 32px;
   margin-bottom: 0;
   margin-top: 0;
+}
+@media (min-width: 992px) {
+  .restaurant-name {
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 48px;
+    letter-spacing: 0.2px;
+  }
+  .restaurant-cuisine {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .restaurant-location {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .reviews-count {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .cost-for-two {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+  }
 }
 .restaurant-cuisine {
   font-family: 'Roboto';

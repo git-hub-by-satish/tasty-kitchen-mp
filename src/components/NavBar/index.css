@@ -55,6 +55,7 @@
   width: 39px;
   height: 32px;
   margin-right: 8px;
+  cursor: pointer;
 }
 @media (min-width: 768px) {
   .nav-website-logo {
@@ -130,6 +131,7 @@
   font-size: 12px;
   line-height: 16px;
   margin-bottom: 3px;
+  cursor: pointer;
 }
 
 .nav-menu-close-button {

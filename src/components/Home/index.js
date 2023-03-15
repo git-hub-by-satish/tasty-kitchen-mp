@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 
 import {IoIosArrowBack, IoIosArrowForward} from 'react-icons/io'
 import {BsFilterLeft, BsFillStarFill} from 'react-icons/bs'
+import {AiOutlineSearch} from 'react-icons/ai'
 import Loader from 'react-loader-spinner'
 import Slider from 'react-slick'
 
@@ -38,6 +39,7 @@ const LIMIT = 9
 
 class Home extends Component {
   state = {
+    searchInput: '',
     restaurantsOffersList: [],
     restaurantsOffersApiStatus: apiStatusConstants.inProgress,
     restaurantsList: [],
@@ -98,10 +100,13 @@ class Home extends Component {
   getRestaurantsList = async () => {
     console.log('this should more')
     this.setState({restaurantsListApiStatus: apiStatusConstants.inProgress})
-    const {activePage, selectedSortByValue} = this.state
+    const {activePage, selectedSortByValue, searchInput} = this.state
     const offset = (activePage - 1) * LIMIT
     const jwtToken = Cookies.get('jwt_token')
-    const url = `https://apis.ccbp.in/restaurants-list?offset=${offset}&limit=${LIMIT}&sort_by_rating=${selectedSortByValue}`
+    let url = `https://apis.ccbp.in/restaurants-list?offset=${offset}&limit=${LIMIT}&sort_by_rating=${selectedSortByValue}`
+    if (searchInput !== '') {
+      url = `https://apis.ccbp.in/restaurants-list?search=${searchInput}`
+    }
     const options = {
       method: 'GET',
       headers: {
@@ -109,13 +114,21 @@ class Home extends Component {
       },
     }
     const response = await fetch(url, options)
-    const data = await response.json()
-    const {restaurants} = data
-    const updatedRestaurantsList = this.getModifiedList(restaurants)
-    this.setState({
-      restaurantsList: updatedRestaurantsList,
-      restaurantsListApiStatus: apiStatusConstants.success,
-    })
+    console.log(response)
+    if (response.ok) {
+      const data = await response.json()
+      const {restaurants} = data
+      const updatedRestaurantsList = this.getModifiedList(restaurants)
+      this.setState({
+        restaurantsList: updatedRestaurantsList,
+        restaurantsListApiStatus: apiStatusConstants.success,
+      })
+    } else {
+      this.setState({
+        restaurantsList: [],
+        restaurantsListApiStatus: apiStatusConstants.failure,
+      })
+    }
   }
 
   renderOffersSlider = () => {
@@ -158,6 +171,18 @@ class Home extends Component {
     this.getRestaurantsList()
   }
 
+  renderNoResultsView = () => {
+    const {searchInput} = this.state
+    return (
+      <div className="no-results-view">
+        <h1 className="no-results-heading">Uh-oh!</h1>
+        <p className="no-results-description">
+          No results found for {searchInput}. Please try something else.
+        </p>
+      </div>
+    )
+  }
+
   renderPopularRestaurantsList = () => {
     const {restaurantsList} = this.state
     return (
@@ -168,8 +193,8 @@ class Home extends Component {
             style={{textDecoration: 'none'}}
             to={`/restaurant/${eachRestaurant.id}`}
           >
-            <li testid="restaurant-item" className="restaurants-list-item">
-              <div>
+            <li className="restaurants-list-item">
+              <div className="popular-restaurant-image-container">
                 <img
                   className="popular-restaurant-image"
                   src={eachRestaurant.imageUrl}
@@ -216,18 +241,24 @@ class Home extends Component {
     this.getRestaurantsList()
   }
 
+  onChangeSearchInput = async event => {
+    await this.setState({searchInput: event.target.value})
+    this.getRestaurantsList()
+  }
+
   render() {
     const {
       restaurantsOffersApiStatus,
       restaurantsListApiStatus,
       selectedSortByValue,
       activePage,
+      searchInput,
     } = this.state
     return (
       <div className="home-route">
         <NavBar isHomeRoute />
         {restaurantsOffersApiStatus === apiStatusConstants.inProgress ? (
-          <div testid="restaurants-offers-loader">
+          <div>
             <Loader
               className="offers-loader-container"
               type="TailSpin"
@@ -248,12 +279,22 @@ class Home extends Component {
                 happy...
               </p>
             </div>
+            <div className="search-bar">
+              <AiOutlineSearch />
+              <input
+                className="search-input"
+                onChange={this.onChangeSearchInput}
+                value={searchInput}
+                type="search"
+                placeholder="Search Your Favorite Restaurant..."
+              />
+            </div>
             <div className="sort-by-container">
               <BsFilterLeft />
               <p htmlFor="select" className="sort-by-label">
                 Sort by
               </p>
-              <p>&nbsp;</p>
+              <p className="space">&nbsp;</p>
               <select
                 onChange={this.onSelectSortBy}
                 value={selectedSortByValue}
@@ -273,34 +314,33 @@ class Home extends Component {
               </select>
             </div>
           </div>
-          {restaurantsListApiStatus === apiStatusConstants.success ? (
-            this.renderPopularRestaurantsList()
-          ) : (
-            <div testid="restaurants-list-loader">
+          {restaurantsListApiStatus === apiStatusConstants.success &&
+            this.renderPopularRestaurantsList()}
+          {restaurantsListApiStatus === apiStatusConstants.inProgress && (
+            <div className="popular-loader-container">
               <Loader
-                className="offers-loader-container"
                 type="TailSpin"
                 color="#F7931E"
+                style={{marginLeft: 'auto', marginRight: 'auto'}}
               />
             </div>
           )}
+
+          {restaurantsListApiStatus === apiStatusConstants.failure &&
+            this.renderNoResultsView()}
           <div className="pagination-buttons-bar">
             <button
               onClick={this.goToPreviousPage}
               type="button"
               className="pagination-btn"
-              testid="pagination-left-button"
             >
               <IoIosArrowBack size={15} />
             </button>
-            <p className="page-no" testid="active-page-number">
-              {activePage}
-            </p>
+            <p className="page-no">{activePage}</p>
             <button
               onClick={this.goToNextPage}
               type="button"
               className="pagination-btn"
-              testid="pagination-right-button"
             >
               <IoIosArrowForward size={15} />
             </button>

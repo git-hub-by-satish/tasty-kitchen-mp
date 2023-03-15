@@ -85,7 +85,7 @@ class CartItem extends Component {
       current: 'item-quantity',
     }
     return (
-      <div testid="cartItem" className="cart-item">
+      <div className="cart-item">
         <div className="cart-item-img-container">
           <img
             className="cart-item-img"

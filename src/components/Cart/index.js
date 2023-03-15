@@ -89,9 +89,7 @@ class Cart extends Component {
           <div className="cart-bill-box">
             <div className="bill-amount-container">
               <FaRupeeSign size={14} color="#3E4C59" />
-              <p testid="total-price" className="order-total-amount">
-                {orderTotal}
-              </p>
+              <p className="order-total-amount">{orderTotal}</p>
             </div>
             <button
               onClick={this.onPlaceOrder}

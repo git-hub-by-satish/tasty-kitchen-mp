@@ -124,10 +124,7 @@ class Restaurant extends Component {
         {restaurantDetailsApiStatus === apiStatusConstants.success ? (
           this.renderRestaurantDetailsBody()
         ) : (
-          <div
-            testid="restaurant-details-loader"
-            className="restaurant-details-loader-container"
-          >
+          <div className="restaurant-details-loader-container">
             <Loader
               className="restaurant-details-loader"
               type="TailSpin"
