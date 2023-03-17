@@ -21,7 +21,7 @@ export default function Footer() {
         The only thing we are serious about is food. Contact us on
       </p>
       <div className="social-icons-container">
-        <FaPinterestSquare color="#ffffff" />
+        <FaPinterestSquare className="social-icon" color="#ffffff" />
         <FaInstagram className="social-icon" color="#ffffff" />
         <FaTwitter className="social-icon" color="#ffffff" />
         <FaFacebookSquare className="social-icon" color="#ffffff" />
